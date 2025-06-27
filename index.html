@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Expenses Tracker (₹)</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    /* Mobile styles */
+    @media (max-width: 600px) {
+        .container {
+            padding: 10px;
+        }
+        .form-grid {
+            display: block;
+        }
+        .category-grid {
+            display: block;
+        }
+        .category-card {
+            margin-bottom: 15px;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            font-size: 14px;
+        }
+    }
+
+    /* Tablet styles */
+    @media (min-width: 601px) and (max-width: 900px) {
+        .container {
+            padding: 20px;
+        }
+        .form-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        .category-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            font-size: 15px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-heading">Indian Expenses Tracker (₹)</h1>
+        
+        <div class="form-container">
+            <h2 class="section-heading">Add New Expense</h2>
+            <form id="expenseForm" class="expense-form">
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" id="description" required class="form-input">
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="amount">Amount (₹)</label>
+                        <input type="number" id="amount" step="1" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select id="category" class="form-input">
+                            <option value="Food">Food & Groceries</option>
+                            <option value="Transport">Transport & Fuel</option>
+                            <option value="Bills">Bills & Utilities</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="EMI">EMI & Loans</option>
+                            <option value="Investment">Investment</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" required class="form-input">
+                </div>
+                
+                <button type="submit" class="submit-button">
+                    Add Expense
+                </button>
+            </form>
+        </div>
+        
+        <div class="summary-container">
+            <div class="summary-header">
+                <h2 class="section-heading">Expense Summary</h2>
+                <div class="total-amount">
+                    Total: ₹<span id="totalAmount">0</span>
+                </div>
+            </div>
+            
+            <div class="category-grid">
+                <div class="category-card food-card">
+                    <h3 class="category-title">Food & Groceries</h3>
+                    <p class="category-amount">₹<span id="foodTotal">0</span></p>
+                </div>
+                <div class="category-card transport-card">
+                    <h3 class="category-title">Transport & Fuel</h3>
+                    <p class="category-amount">₹<span id="transportTotal">0</span></p>
+                </div>
+                <div class="category-card bills-card">
+                    <h3 class="category-title">Bills & Utilities</h3>
+                    <p class="category-amount">₹<span id="billsTotal">0</span></p>
+                </div>
+                <div class="category-card shopping-card">
+                    <h3 class="category-title">Shopping</h3>
+                    <p class="category-amount">₹<span id="shoppingTotal">0</span></p>
+                </div>
+                <div class="category-card entertainment-card">
+                    <h3 class="category-title">Entertainment</h3>
+                    <p class="category-amount">₹<span id="entertainmentTotal">0</span></p>
+                </div>
+                <div class="category-card emi-card">
+                    <h3 class="category-title">EMI & Loans</h3>
+                    <p class="category-amount">₹<span id="emiTotal">0</span></p>
+                </div>
+                <div class="category-card investment-card">
+                    <h3 class="category-title">Investment</h3>
+                    <p class="category-amount">₹<span id="investmentTotal">0</span></p>
+                </div>
+                <div class="category-card other-card">
+                    <h3 class="category-title">Others</h3>
+                    <p class="category-amount">₹<span id="otherTotal">0</span></p>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="history-container">
+            <div class="history-header">
+                <h2 class="section-heading">Expense History</h2>
+                <button id="clearAll" class="clear-all-button">
+                    Clear All
+                </button>
+            </div>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Amount (₹)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expenseList">
+                        <!-- Expenses will be added here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
